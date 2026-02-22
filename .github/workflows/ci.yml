@@ -1,0 +1,44 @@
+name: Maven TestNG CI
+
+on:
+  push:
+    branches: [ main ]       # तुझी branch "master" असेल तर इथे main ऐवजी master लिहा
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest   # GitHub Linux machine वापरेल (तुला काही install करायची गरज नाही)
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'          # तुझा project Java 8 वर आहे
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run tests with Maven
+        run: mvn -B clean test
+
+      # HTML report ला unique नाव देणे
+      - name: Prepare HTML report with unique name
+        run: |
+          mkdir -p reports
+          if [ -f test-output/emailable-report.html ]; then
+            cp test-output/emailable-report.html "reports/emailable-report-run-${{ github.run_number }}.html"
+          elif [ -f test-output/index.html ]; then
+            cp test-output/index.html "reports/index-run-${{ github.run_number }}.html"
+          fi
+
+      # Reports GitHub वर artifact म्हणून upload करणे
+      - name: Upload reports as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: "test-report-run-${{ github.run_number }}"
+          path: |
+            reports/
+            test-output/**

@@ -37,7 +37,18 @@ public class BaseClass {
 	public void setup(@Optional("default_os") String os, @Optional("chrome") String br) throws IOException
 	{
 		//Loading config.properties
-		FileReader file = new FileReader("F:\\Workspace\\AutomationExercise\\config.properties");
+		public void setup() throws IOException {
+        prop = new Properties();
+
+        // Project root path (जिथे pom.xml आहे)
+        String projectPath = System.getProperty("user.dir");
+
+        // OS‑independent path तयार कर
+        String configPath = projectPath + File.separator + "config.properties";
+
+        FileInputStream fis = new FileInputStream(configPath);
+        prop.load(fis);
+    }
 
 		p=new Properties();
 		p.load(file);

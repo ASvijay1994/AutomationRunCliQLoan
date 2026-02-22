@@ -2,22 +2,23 @@ name: Maven TestNG CI
 
 on:
   push:
-    branches: [ main ]       # तुझी branch "master" असेल तर इथे main ऐवजी master लिहा
+    branches: [ main ]        # branch "master" असेल तर main ऐवजी master लिहा
   pull_request:
     branches: [ main ]
+  workflow_dispatch:           # manually "Run workflow" button साठी
 
 jobs:
   tests:
-    runs-on: ubuntu-latest   # GitHub Linux machine वापरेल (तुला काही install करायची गरज नाही)
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      -      - name: Set up JDK 17
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '17'   # TestNG 7.10.2 साठी Java 11+ लागतो, म्हणून 17 ठेवले
           distribution: 'temurin'
           cache: maven
 
@@ -26,6 +27,7 @@ jobs:
 
       # HTML report ला unique नाव देणे
       - name: Prepare HTML report with unique name
+        if: always()           # tests fail झाले तरी हा step चालेल
         run: |
           mkdir -p reports
           if [ -f test-output/emailable-report.html ]; then
@@ -34,11 +36,13 @@ jobs:
             cp test-output/index.html "reports/index-run-${{ github.run_number }}.html"
           fi
 
-      # Reports GitHub वर artifact म्हणून upload करणे
+      # Reports GitHub वर artifact म्हणून upload
       - name: Upload reports as artifact
+        if: always()           # fail झाल्यावरही reports upload होतील
         uses: actions/upload-artifact@v4
         with:
           name: "test-report-run-${{ github.run_number }}"
           path: |
             reports/
             test-output/**
+            target/surefire-reports/**

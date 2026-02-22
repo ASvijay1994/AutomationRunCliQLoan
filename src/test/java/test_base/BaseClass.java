@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
-
+import org.testng.annotations.AfterMethod;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.logging.log4j.LogManager; // log4j
@@ -70,12 +70,35 @@ public class BaseClass {
 		
 
 	}
+	@AfterMethod
+	public void captureResult(ITestResult result) throws IOException {
+
+	    String testName = result.getName();
+	    String status = "";
+
+	    if (result.getStatus() == ITestResult.FAILURE) {
+	        status = "FAIL";
+	    }
+	    else if (result.getStatus() == ITestResult.SUCCESS) {
+	        status = "PASS";
+	    }
+	    else if (result.getStatus() == ITestResult.SKIP) {
+	        status = "SKIP";
+	    }
+
+	    captureScreen(testName + "_" + status);
+	}
+
+	
 	
 	
 	@AfterClass (groups={"Sanity","Regression","Master"})
 	public void teardown ()
 	{
 		//driver.quit();
+		 if (driver != null) {
+	            driver.quit();
+	        }
 	}
 
 	    public String randomString() {

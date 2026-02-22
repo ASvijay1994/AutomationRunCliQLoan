@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-02-18T19:08:29 IST" name="Default suite" finished-at="2026-02-18T19:08:42 IST" duration-ms="13345">
+  <suite started-at="2026-02-22T18:11:24 IST" name="CliQloan_Automation_Suite" finished-at="2026-02-22T18:11:36 IST" duration-ms="12354">
     <groups>
     </groups>
-    <test started-at="2026-02-18T19:08:29 IST" name="Default test" finished-at="2026-02-18T19:08:42 IST" duration-ms="13345">
+    <test started-at="2026-02-22T18:11:24 IST" name="TC01_VerifyValidLoginCredential_Test" finished-at="2026-02-22T18:11:36 IST" duration-ms="12354">
       <class name="test_cases.TC01_VerifyValidLoginCredential">
-        <test-method is-config="true" signature="setup(java.lang.String,java.lang.String)[pri:0, instance:test_cases.TC01_VerifyValidLoginCredential@376a0d86]" started-at="2026-02-18T19:08:29 IST" name="setup" finished-at="2026-02-18T19:08:39 IST" duration-ms="10067" status="PASS">
+        <test-method is-config="true" signature="setup(java.lang.String,java.lang.String)[pri:0, instance:test_cases.TC01_VerifyValidLoginCredential@7d61eb55]" started-at="2026-02-22T18:11:24 IST" name="setup" finished-at="2026-02-22T18:11:33 IST" duration-ms="9031" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -23,15 +23,26 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="verifyLoginFunctionality()[pri:0, instance:test_cases.TC01_VerifyValidLoginCredential@376a0d86]" started-at="2026-02-18T19:08:39 IST" name="verifyLoginFunctionality" finished-at="2026-02-18T19:08:42 IST" duration-ms="3033" status="PASS">
+        <test-method signature="verifyLoginFunctionality()[pri:0, instance:test_cases.TC01_VerifyValidLoginCredential@7d61eb55]" started-at="2026-02-22T18:11:33 IST" name="verifyLoginFunctionality" finished-at="2026-02-22T18:11:35 IST" duration-ms="2325" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyLoginFunctionality -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:test_cases.TC01_VerifyValidLoginCredential@376a0d86]" started-at="2026-02-18T19:08:42 IST" name="teardown" finished-at="2026-02-18T19:08:42 IST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="captureResult(org.testng.ITestResult)[pri:0, instance:test_cases.TC01_VerifyValidLoginCredential@7d61eb55]" started-at="2026-02-22T18:11:35 IST" name="captureResult" finished-at="2026-02-22T18:11:36 IST" duration-ms="450" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyLoginFunctionality status=SUCCESS method=TC01_VerifyValidLoginCredential.verifyLoginFunctionality()[pri:0, instance:test_cases.TC01_VerifyValidLoginCredential@7d61eb55] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- captureResult -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:test_cases.TC01_VerifyValidLoginCredential@7d61eb55]" started-at="2026-02-22T18:11:36 IST" name="teardown" finished-at="2026-02-22T18:11:36 IST" duration-ms="366" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
       </class> <!-- test_cases.TC01_VerifyValidLoginCredential -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- TC01_VerifyValidLoginCredential_Test -->
+  </suite> <!-- CliQloan_Automation_Suite -->
 </testng-results>
